@@ -5,7 +5,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Chats from './Components/Chats';
 import PrivateRoute from './Components/PrivateRoute'
-import './app.css';
+import './App.css';
 import AdminRoute from './Components/AdminRoute';
 import GroupChats from './Components/GroupChats';
 
