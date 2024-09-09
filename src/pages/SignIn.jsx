@@ -1,0 +1,67 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Login } from "../features/auth/authSlice";
+
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { isSuccess } = useSelector((state) => state.auth);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault(); 
+    dispatch(Login(formData));
+    
+  };
+
+  // useEffect(() => {
+  //   console.log(isSuccess)
+  //   if(isSuccess) navigate('/')
+  // },[isSuccess])
+
+
+  return (
+    <div className="w-full h-screen flex justify-center items-center">
+      <form onSubmit={submitHandler} className="md:w-[30%] w-[90%] border rounded-xl p-5">
+        <label htmlFor="username">Enter Username</label>
+        <input
+          className="w-full border rounded-xl p-2 mb-5 mt-1"
+          type="text"
+          name="username"
+          id="username"
+          placeholder="username"
+          value={formData.username} 
+          onChange={handleChange}
+        />
+        <label htmlFor="password">Enter Password</label>
+        <input
+          className="w-full border rounded-xl p-2 mb-5 mt-1"
+          type="text"
+          name="password"
+          id="password"
+          placeholder="******"
+          value={formData.password} 
+          onChange={handleChange} 
+        />
+        <button type="submit" className="w-full border p-2 rounded-xl bg-black text-white">
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default SignIn;
