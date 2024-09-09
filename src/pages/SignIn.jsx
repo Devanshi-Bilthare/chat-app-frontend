@@ -6,12 +6,18 @@ import { Login } from "../features/auth/authSlice";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isAuthenticated, error } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
 
-  const { isSuccess } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,13 +30,7 @@ const SignIn = () => {
   const submitHandler = (e) => {
     e.preventDefault(); 
     dispatch(Login(formData));
-    
   };
-
-  // useEffect(() => {
-  //   console.log(isSuccess)
-  //   if(isSuccess) navigate('/')
-  // },[isSuccess])
 
 
   return (

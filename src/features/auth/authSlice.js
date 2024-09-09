@@ -42,6 +42,7 @@ export const GetUser = createAsyncThunk('user/getUser',async(id,thunkApi)=>{
 
 const initialState = {
     auth:loadUserFromLocalStorage(),
+    isAuthenticated: !!loadUserFromLocalStorage(),
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -78,7 +79,8 @@ export const authSlice = createSlice({
         .addCase(Login.fulfilled,(state,action)=>{
             state.isLoading = false
             state.isSuccess = true
-            state.user = action.payload
+            state.auth = action.payload
+             state.isAuthenticated = true;
             if(state.isSuccess){
                 toast.success("User Logged In successfully")
             }
