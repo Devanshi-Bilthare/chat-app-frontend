@@ -113,7 +113,9 @@ const GroupChats = () => {
         )}
       </div>
       {/* SendMessage remains unchanged */}
+      <div className='h-[13vh] bg-white py-2'> 
       <SendMessage socket={socket} roomId={id} setMessages={setMessages}/> 
+      </div>
     </div>
   );
 };

@@ -104,7 +104,7 @@ const Chats = () => {
                     <p>No messages yet.</p>
                 )}
             </div>
-            <SendMessage socket={socket} receiverId={id} setMessages={setMessages}/> 
+            <div className='h-[13vh] bg-white py-2'>            <SendMessage socket={socket} receiverId={id} setMessages={setMessages}/> </div>
         </div>
     );
 };

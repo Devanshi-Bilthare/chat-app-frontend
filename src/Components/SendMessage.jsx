@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SendOneToOne } from '../features/messages/messageSlice'; // Assuming your redux action can handle groups too
 import { AiOutlineFile } from 'react-icons/ai';
 import { v4 as uuidv4 } from 'uuid';
+import { IoMdSend } from "react-icons/io";
 
 const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     const [message, setMessage] = useState('');
@@ -58,7 +59,7 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     
     
     return (
-        <div className="fixed bottom-2 right-20 w-[70vw] border-2 border-gray-300 pe-10 rounded-xl bg-white">
+        <div className="fixed bottom-2 md:right-20 md:w-[70vw] w-[90vw] ms-5 md:m-0  h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
             <div className="flex items-center space-x-2">
                 <textarea
                     value={message}
@@ -79,9 +80,9 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
 
                 <button
                     onClick={handleSendMessage}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                    className="text-blue-500 text-xl px-4 py-2 "
                 >
-                    Send
+                   <IoMdSend />
                 </button>
             </div>
 
