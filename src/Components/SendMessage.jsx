@@ -80,7 +80,7 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
 
                 <button
                     onClick={handleSendMessage}
-                    className="text-blue-500 text-xl px-4 py-2 "
+                    className="text-blue-500 text-xl px-4 "
                 >
                    <IoMdSend />
                 </button>
