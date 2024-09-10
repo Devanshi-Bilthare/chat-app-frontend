@@ -16,7 +16,7 @@ const SignIn = () => {
     if (isAuthenticated) {
       navigate('/');
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated,navigate]);
 
 
   const handleChange = (e) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAll } from '../features/auth/authSlice';
+import { GetAll, logout } from '../features/auth/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiDotsVertical } from "react-icons/hi";
 import { isAdmin } from '../utils/config';
@@ -17,7 +17,7 @@ const ChatList = ({setIsCreateGroup}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isChatListOpen, setIsChatListOpen] = useState(false);
+    const [isChatListOpen, setIsChatListOpen] = useState(true);
 
     const unReadmessages = useSelector(state => state.message?.unreadMessage)
 
@@ -25,10 +25,10 @@ const ChatList = ({setIsCreateGroup}) => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
-    const handleLogOut =() => {
-        localStorage.clear()
-        navigate('/signin')
-    }
+    const handleLogOut = () => {
+        dispatch(logout()); // Dispatch the logout action to clear the Redux state
+        navigate('/signin'); // Redirect to sign-in page
+    };
 
     const handleChatClick = (userId) => {
         // Dispatch an action to fetch or update unread messages

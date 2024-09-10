@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreateChatRoom } from '../features/chatRoom/chatRoomSlice';
 import { useNavigate } from 'react-router-dom';
+import { IoArrowBackSharp } from "react-icons/io5";
 
-const CreateGroup = () => {
+const CreateGroup = ({setIsCreateGroup}) => {
     const [name, setName] = useState('');
     const [members, setMembers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -36,7 +37,9 @@ const CreateGroup = () => {
 
     return (
         <div className='absolute w-screen h-screen bg-black/30 backdrop-blur-sm flex justify-center items-center'>
+           
             <form className='w-[50vw] h-[70vh] bg-white rounded-xl p-6 flex flex-col' onSubmit={handleSubmit}>
+            <IoArrowBackSharp onClick={() => setIsCreateGroup(false)} className='cursor-pointer'/>
                 <h2 className='text-lg font-bold mb-4'>Create Chat Room</h2>
                 
                 <div className='mb-4'>

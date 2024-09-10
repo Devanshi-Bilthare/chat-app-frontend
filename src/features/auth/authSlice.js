@@ -51,7 +51,14 @@ const initialState = {
 export const authSlice = createSlice({
     name:"auth",
     initialState,
-    reducers:{},
+    reducers:{
+        logout: (state) => {
+            state.auth = null;
+            state.isAuthenticated = false;
+            localStorage.removeItem('user');
+            toast.success("Logged out successfully!");
+        },
+    },
     extraReducers:(builder)=>{
         builder.addCase(Register.pending,(state)=>{
             state.isLoading = true
@@ -125,4 +132,5 @@ export const authSlice = createSlice({
     }
 })
 
+export const { logout } = authSlice.actions;
 export default authSlice.reducer
