@@ -113,7 +113,7 @@ const GroupChats = () => {
         )}
       </div>
       {/* SendMessage remains unchanged */}
-      <div className='h-[20vh] bg-white fixed md:left-[20vw] md:w-[80vw] w-full flex justify-center items-center pb-10'>   
+      <div className='h-[15vh] bg-white fixed md:left-[20vw] md:w-[80vw] w-full flex justify-center items-center bottom-0'>   
       <SendMessage socket={socket} roomId={id} setMessages={setMessages}/> 
       </div>
     </div>
