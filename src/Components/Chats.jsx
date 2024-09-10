@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { markMessagesAsRead, ReceiveOneToOne } from '../features/messages/messageSlice';
+import { getUnreadMessage, markMessagesAsRead, ReceiveOneToOne } from '../features/messages/messageSlice';
 import SendMessage from './SendMessage';
 import moment from 'moment';
 import { GetUser } from '../features/auth/authSlice';
@@ -22,6 +22,7 @@ const Chats = () => {
         dispatch(ReceiveOneToOne(id)); 
         dispatch(GetUser(id))
         dispatch(markMessagesAsRead({ senderId: id,chatType:'one'}));
+        dispatch(getUnreadMessage())
     }, [id, dispatch]);
 
     // Update local messages state when Redux messages change
@@ -59,7 +60,7 @@ const Chats = () => {
             <div className='w-[80vw] h-[7vh] fixed top-0 right-0 bg-white px-5 flex items-center'>
                 <h2>{receivedUser?.username}</h2>
             </div>
-            <div className='w-[80vw] h-[80vh] bg-gray-200 p-4 overflow-y-scroll mt-[7vh]'>
+            <div className='md:w-[80vw] w-full h-[80vh] custom-scroll bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
                 {messages && messages.length > 0 ? (
                     messages.map((message, idx) => (
                         <div

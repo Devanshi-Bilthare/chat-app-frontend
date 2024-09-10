@@ -7,6 +7,7 @@ import { isAdmin } from '../utils/config';
 import { GetUserChatRoom } from '../features/chatRoom/chatRoomSlice';
 import { getUnreadMessage } from '../features/messages/messageSlice';
 import socket from '../utils/socket'; 
+import { HiMenuAlt1 } from 'react-icons/hi';
 
 const ChatList = ({setIsCreateGroup}) => {
     // Accessing currentUser and allUsers directly from useSelector
@@ -16,6 +17,7 @@ const ChatList = ({setIsCreateGroup}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isChatListOpen, setIsChatListOpen] = useState(false);
 
     const unReadmessages = useSelector(state => state.message?.unreadMessage)
 
@@ -30,17 +32,19 @@ const ChatList = ({setIsCreateGroup}) => {
 
     const handleChatClick = (userId) => {
         // Dispatch an action to fetch or update unread messages
-        dispatch(getUnreadMessage());
+        // dispatch(getUnreadMessage());
     
         // Navigate to the chat
+        setIsChatListOpen(false)
         navigate(`/chats/${userId}`);
     };
 
     const handleGrpClick = (grpId) => {
         // Dispatch an action to fetch or update unread messages
-        dispatch(getUnreadMessage());
+        // dispatch(getUnreadMessage());
     
         // Navigate to the chat
+        setIsChatListOpen(false)
         navigate(`/chats/${grpId}`);
     };
 
@@ -92,7 +96,16 @@ const ChatList = ({setIsCreateGroup}) => {
     };
 
     return (
-        <div className='w-[20%] border-2 h-screen overflow-y-scroll custom-scroll bg-slate-100 relative'>
+        <div className='relative'>
+              <button
+                className='md:hidden bg-blue-500 text-white p-2 rounded-full fixed top-4 left-4 z-50'
+                onClick={() => setIsChatListOpen(!isChatListOpen)}
+            >
+                <HiMenuAlt1 size={24} />
+            </button>
+              <div className={`fixed top-0 left-0 h-screen w-[80%] md:w-[20%] bg-slate-100 border-r-2 z-40 transform transition-transform ease-in-out duration-300 ${
+                    isChatListOpen ? 'translate-x-0' : '-translate-x-full'
+                } md:translate-x-0`}>
             <div className='w-full py-5 px-5 border-b-2 flex items-center justify-between'>
             <h1 >{currentUser?.username}</h1>
           
@@ -122,6 +135,11 @@ const ChatList = ({setIsCreateGroup}) => {
                              className='py-2 px-4 hover:bg-gray-100 cursor-pointer'
                          >
                              <Link to={'/signup'}>Add User</Link>
+                         </li>
+                         <li
+                             className='py-2 px-4 hover:bg-gray-100 cursor-pointer'
+                         >
+                             <Link to={'/getAll'}>All Messages</Link>
                          </li>
                          </>
                         : null}
@@ -157,7 +175,16 @@ const ChatList = ({setIsCreateGroup}) => {
                     return null; // Return null if the condition is not met
                 })
             }
+              {/* {isChatListOpen && (
+                <div
+                    className='fixed inset-0 opacity-50 z-30'
+                    onClick={() => setIsChatListOpen(false)}
+                ></div>
+            )} */}
         </div>
+        </div>
+      
+
     );
 };
 

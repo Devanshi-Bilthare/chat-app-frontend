@@ -29,7 +29,12 @@ const markMessagesAsRead = async (data) => {
     return response.data;
 }
 
+const getAllMessages = async () => {
+    const response = await axios.get(`${base_url}messages/getAll`, config);
+    return response.data;
+}
 
-const messageService = {ReceiveOneToOne,SendOneToOne,ReceiveGroupMessages,markMessagesAsRead,getUnreadMessage}
+
+const messageService = {ReceiveOneToOne,SendOneToOne,ReceiveGroupMessages,markMessagesAsRead,getUnreadMessage,getAllMessages}
 
 export default messageService

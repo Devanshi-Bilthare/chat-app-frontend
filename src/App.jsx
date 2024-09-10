@@ -8,6 +8,7 @@ import PrivateRoute from './Components/PrivateRoute'
 import './App.css';
 import AdminRoute from './Components/AdminRoute';
 import GroupChats from './Components/GroupChats';
+import AllMessages from './pages/AllMessages';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       {/* Public Routes */}
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<AdminRoute><SignUp /></AdminRoute>} />
+      <Route path="/getAll" element={<AdminRoute><AllMessages /></AdminRoute>} />
       {/* <Route path="/signup" element={<SignUp />} /> */}
 
 

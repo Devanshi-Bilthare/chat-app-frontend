@@ -45,6 +45,16 @@ export const getUnreadMessage = createAsyncThunk('message/unreadMsg',async(thunk
     }
 })
 
+export const getAllMessages = createAsyncThunk('message/getAll',async(thunkApi)=>{
+    try{
+        
+        return  await messageService.getAllMessages()
+      
+    }catch(err){
+        return thunkApi.rejectWithValue(err)
+    }
+})
+
 
 
 const initialState = {
@@ -126,6 +136,21 @@ export const messageSlice = createSlice({
             // console.log(state.unreadMessage)
         })
         .addCase(getUnreadMessage.rejected,(state,action)=>{
+            state.isLoading = false
+            state.isError=true
+            state.isSuccess = false
+            state.message = action.error
+        })
+        .addCase(getAllMessages.pending,(state)=>{
+            state.isLoading = true
+        })
+        .addCase(getAllMessages.fulfilled,(state,action)=>{
+            state.isLoading = false
+            state.isSuccess = true
+            state.allMessages = action.payload
+            // console.log(state.unreadMessage)
+        })
+        .addCase(getAllMessages.rejected,(state,action)=>{
             state.isLoading = false
             state.isError=true
             state.isSuccess = false

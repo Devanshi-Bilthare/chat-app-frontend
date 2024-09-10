@@ -65,7 +65,7 @@ const GroupChats = () => {
           <p key={member._id}>{member.username},</p>
         ))}
       </div>
-      <div className='w-[80vw] h-[80vh] bg-gray-200 p-4 overflow-y-scroll mt-[7vh]'>
+      <div className='md:w-[80vw] w-[full] h-[80vh] bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
         {messages && messages.length > 0 ? (
           messages.map((message, idx) => (
             <div

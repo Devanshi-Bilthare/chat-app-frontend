@@ -58,7 +58,7 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     
     
     return (
-        <div className="fixed bottom-7 right-20 w-[70vw] h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
+        <div className="fixed bottom-2 right-20 w-[70vw] h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
             <div className="flex items-center space-x-2">
                 <textarea
                     value={message}

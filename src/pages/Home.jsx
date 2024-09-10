@@ -8,7 +8,7 @@ const Home = () => {
   const [isCreateGroup,setIsCreateGroup] = useState(false)
 
   return (
-    <div className='flex bg-gray-200 relative'>
+    <div className='flex bg-gray-200 relative overflow-x-hidden w-screen'>
         <ChatList setIsCreateGroup={setIsCreateGroup}/>
         <Outlet>
             <Chats/>
