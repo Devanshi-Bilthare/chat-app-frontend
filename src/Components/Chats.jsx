@@ -60,7 +60,7 @@ const Chats = () => {
             <div className='w-[80vw] h-[7vh] fixed top-0 right-0 bg-white px-5 flex items-center'>
                 <h2>{receivedUser?.username}</h2>
             </div>
-            <div className='md:w-[80vw] w-full md:h-[80vh] h-[70vh] custom-scroll bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
+            <div className='md:w-[80vw] w-screen md:h-[80vh] h-[70vh] custom-scroll bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
                 {messages && messages.length > 0 ? (
                     messages.map((message, idx) => (
                         <div
