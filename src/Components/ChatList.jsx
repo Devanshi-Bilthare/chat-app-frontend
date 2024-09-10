@@ -17,7 +17,7 @@ const ChatList = ({setIsCreateGroup}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isChatListOpen, setIsChatListOpen] = useState(true);
+    const [isChatListOpen, setIsChatListOpen] = useState(false);
 
     const unReadmessages = useSelector(state => state.message?.unreadMessage)
 
@@ -106,14 +106,22 @@ const ChatList = ({setIsCreateGroup}) => {
               <div className={`fixed top-0 left-0 h-screen w-[80%] md:w-[20%] bg-slate-100 border-r-2 z-40 transform transition-transform ease-in-out duration-300 ${
                     isChatListOpen ? 'translate-x-0' : '-translate-x-full'
                 } md:translate-x-0`}>
-            <div className='w-full py-5 px-5 border-b-2 flex items-center justify-between'>
-            <h1 >{currentUser?.username}</h1>
+            <div className={`w-full py-5 px-5 border-b-2 flex items-center justify-between`}>
+            <h1 >{isChatListOpen ? "" : currentUser?.username}</h1>
           
                 <div className={`cursor-pointer p-2 ${isDropdownOpen ? "bg-gray-300" : ""}  rounded-full`} onClick={toggleDropdown}><HiDotsVertical /></div>
 
             {isDropdownOpen && (
                 <div className='absolute top-14 right-5 w-48 bg-white shadow-md rounded-md z-2'>
                     <ul>
+                    {isChatListOpen ?
+                    <li
+                            className='py-2 px-4 hover:bg-gray-100 cursor-pointer'
+                            
+                        >
+                           {currentUser?.username }
+                        </li>
+                        : null}
                         <li
                             className='py-2 px-4 hover:bg-gray-100 cursor-pointer'
                             onClick={handleLogOut}
