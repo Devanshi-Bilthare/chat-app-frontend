@@ -59,13 +59,13 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     
     
     return (
-        <div className="fixed bottom-2 md:right-20 md:w-[70vw] w-[90vw] ms-5 md:m-0  h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
+        <div className="md:w-[70vw] w-[90vw] ms-5 h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
             <div className="flex items-center space-x-2">
                 <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Type a message..."
-                    className="w-full p-2  border-none outline-none border-gray-300 rounded-md resize-none"
+                    className="w-full px-2 border-none outline-none border-gray-300 rounded-md resize-none"
                 ></textarea>
 
                 <label htmlFor="file-input">
