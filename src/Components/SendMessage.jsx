@@ -4,6 +4,7 @@ import { SendOneToOne } from '../features/messages/messageSlice'; // Assuming yo
 import { AiOutlineFile } from 'react-icons/ai';
 import { v4 as uuidv4 } from 'uuid';
 import { IoMdSend } from "react-icons/io";
+import { FiPaperclip } from 'react-icons/fi';
 
 const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     const [message, setMessage] = useState('');
@@ -70,7 +71,8 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
 
                <div className='flex justify-center items-center gap-5'>
                <label htmlFor="file-input">
-                    <AiOutlineFile className="text-2xl cursor-pointer" />
+               <FiPaperclip className="text-2xl cursor-pointer"/>
+                    {/* <AiOutlineFile  /> */}
                 </label>
                 <input
                     type="file"
@@ -81,7 +83,7 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
 
                 <button
                     onClick={handleSendMessage}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-2xl"
                 >
                    <IoMdSend />
                 </button>
