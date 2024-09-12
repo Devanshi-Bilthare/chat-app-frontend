@@ -60,11 +60,13 @@ const GroupChats = () => {
 
   return (
     <div className=''>
-      <div className='w-[80vw] h-[7vh] fixed top-0 right-0 bg-white px-5 flex items-center gap-5'>
+      <div className='w-[80vw] py-3  fixed top-0 right-0 bg-white px-5 items-center gap-5'>
         <p className='capitalize'>{currentChatRoom?.name} - </p>
+        <div className='flex gap-2'>
         {currentChatRoom?.members?.map((member) => (
           <p key={member._id}>{member.username},</p>
         ))}
+        </div>
       </div>
       <div className='md:w-[80vw] w-[full] h-[80vh] bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
         {messages && messages.length > 0 ? (
