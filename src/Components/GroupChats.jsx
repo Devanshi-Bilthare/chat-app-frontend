@@ -68,7 +68,7 @@ const GroupChats = () => {
         ))}
         </div>
       </div>
-      <div className='md:w-[80vw] w-[full] h-[80vh] bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
+      <div className='md:w-[80vw] w-screen h-[80vh] bg-gray-200 p-4 overflow-y-scroll mt-[7vh] md:ms-[20vw]'>
         {messages && messages.length > 0 ? (
           messages.map((message, idx) => (
             <div
