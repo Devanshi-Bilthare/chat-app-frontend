@@ -101,7 +101,7 @@ const Chats = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No messages yet.</p>
+                    <div className='text-3xl w-full h-full text-white font-bold flex justify-center items-center'><p>No messages yet...</p></div>
                 )}
             </div>
             <div className='h-[15vh] bg-white fixed md:left-[20vw] md:w-[80vw] w-full flex justify-center items-center bottom-0'>            <SendMessage socket={socket} receiverId={id} setMessages={setMessages}/> </div>
