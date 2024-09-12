@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Chats from '../Components/Chats'
 import CreateGroup from '../Components/CreateGroup'
 import socket from '../utils/socket'
+import Image from '../assets/image1.png'
 
 const Home = () => {
   const [isCreateGroup,setIsCreateGroup] = useState(false)
@@ -37,6 +38,8 @@ const user = userString ? JSON.parse(userString) : null;
   return (
     <div className='flex bg-gray-200 relative'>
         <ChatList setIsCreateGroup={setIsCreateGroup}/>
+        <div className='w-screen h-screen flex flex-col justify-center items-center '><img src={Image} alt="" />
+        </div>
         <Outlet>
             <Chats/>
         </Outlet>
