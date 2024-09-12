@@ -9,6 +9,8 @@ import './App.css';
 import AdminRoute from './Components/AdminRoute';
 import GroupChats from './Components/GroupChats';
 import AllMessages from './pages/AllMessages';
+import AllUserTable from './Components/AllUserTable';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
       <Route path="/signup" element={<AdminRoute><SignUp /></AdminRoute>} />
       <Route path="/getAll" element={<AdminRoute><AllMessages /></AdminRoute>} />
       {/* <Route path="/signup" element={<SignUp />} /> */}
+
+      <Route path="/AllUser" element={<AdminRoute><AllUserTable /></AdminRoute>} />
 
 
       {/* Private Route for Home and Nested Routes */}

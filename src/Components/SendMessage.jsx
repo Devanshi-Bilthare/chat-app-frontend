@@ -59,8 +59,8 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     
     
     return (
-        <div className="md:w-[70vw] w-[90vw] ms-5 h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
-            <div className="flex items-center space-x-2">
+        <div className="md:w-[70vw] w-[90vw] h-[10vh] border-2 border-gray-300 pe-10 rounded-xl bg-white">
+            <div className="flex items-center justify-between w-full h-full">
                 <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -68,7 +68,8 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
                     className="w-full px-2 border-none outline-none border-gray-300 rounded-md resize-none"
                 ></textarea>
 
-                <label htmlFor="file-input">
+               <div className='flex justify-center items-center gap-5'>
+               <label htmlFor="file-input">
                     <AiOutlineFile className="text-2xl cursor-pointer" />
                 </label>
                 <input
@@ -80,10 +81,11 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
 
                 <button
                     onClick={handleSendMessage}
-                    className="text-blue-500 text-xl px-4 "
+                    className="text-blue-500 text-xl"
                 >
                    <IoMdSend />
                 </button>
+               </div>
             </div>
 
             {file && (

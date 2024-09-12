@@ -17,7 +17,7 @@ const ChatList = ({setIsCreateGroup}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isChatListOpen, setIsChatListOpen] = useState(false);
+    const [isChatListOpen, setIsChatListOpen] = useState(true);
 
     const unReadmessages = useSelector(state => state.message?.unreadMessage)
 
@@ -103,11 +103,11 @@ const ChatList = ({setIsCreateGroup}) => {
             >
                 <HiMenuAlt1 size={24} />
             </button>
-              <div className={`fixed top-0 left-0 h-screen w-[80%] md:w-[20%] bg-slate-100 border-r-2 z-40 transform transition-transform ease-in-out duration-300 ${
+              <div className={`fixed top-0 left-0 h-screen overflow-x-scroll custom-scroll w-[80%] md:w-[20%] bg-slate-100 border-r-2 z-40 transform transition-transform ease-in-out duration-300 ${
                     isChatListOpen ? 'translate-x-0' : '-translate-x-full'
                 } md:translate-x-0`}>
-            <div className={`w-full py-5 px-5 border-b-2 flex items-center justify-between`}>
-            <h1 >{isChatListOpen ? "" : currentUser?.username}</h1>
+            <div className={`w-full py-4 px-5  border-b-2 flex items-center justify-between`}>
+            <h1 className='md:text-black text-white'> {currentUser?.username}</h1>
           
                 <div className={`cursor-pointer p-2 ${isDropdownOpen ? "bg-gray-300" : ""}  rounded-full`} onClick={toggleDropdown}><HiDotsVertical /></div>
 
@@ -149,6 +149,11 @@ const ChatList = ({setIsCreateGroup}) => {
                          >
                              <Link to={'/getAll'}>All Messages</Link>
                          </li>
+                         {/* <li
+                             className='py-2 px-4 hover:bg-gray-100 cursor-pointer'
+                         >
+                             <Link to={'/AllUser'}>All Users</Link>
+                         </li> */}
                          </>
                         : null}
                        
@@ -161,7 +166,7 @@ const ChatList = ({setIsCreateGroup}) => {
                     
                     if (group.username !== currentUser?.username) {
                         const groupUnreadMessages = getGroupUnreadMessages(group._id);
-                        return <Link onClick={() => handleGrpClick(group._id)} to={`/groupChats/${group._id}`}  key={idx}><div className='w-full py-5 px-5 flex justify-between border-b-2 hover:bg-gray-300'> <p>{group.name}</p>                             {groupUnreadMessages?.length > 0 ?
+                        return <Link onClick={() => handleGrpClick(group._id)} to={`/groupChats/${group._id}`}  key={idx}><div className='w-full py-4 px-5 flex justify-between border-b-2 hover:bg-gray-300'> <p>{group.name}</p>                             {groupUnreadMessages?.length > 0 ?
                             <p className='bg-blue-400 px-2 rounded-full text-white'> {groupUnreadMessages?.length} </p>: null} </div></Link>; // Return the JSX
                     }
                     return null; // Return null if the condition is not met
@@ -172,7 +177,7 @@ const ChatList = ({setIsCreateGroup}) => {
                     if (user.username !== currentUser?.username) {
                         const userUnreadMessages = getUserUnreadMessages(user._id);
 
-                        return <Link  onClick={() => handleChatClick(user._id)} to={`/chats/${user._id}`}  key={idx}><div className=' flex justify-between w-full py-5 px-5 border-b-2 hover:bg-gray-300'>
+                        return <Link  onClick={() => handleChatClick(user._id)} to={`/chats/${user._id}`}  key={idx}><div className=' flex justify-between w-full py-4 px-5 border-b-2 hover:bg-gray-300'>
                             <p>{user.username} {user.role == 'admin' ? `(${user.role})` : null}</p>
                             {userUnreadMessages?.length > 0 ?
                             <p className='bg-blue-400 px-2 rounded-full text-white'> {userUnreadMessages?.length} </p>: null}

@@ -35,10 +35,10 @@ const SignIn = () => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <form onSubmit={submitHandler} className="md:w-[30%] w-[90%] border rounded-xl p-5">
+      <form onSubmit={submitHandler} className="md:w-[30%] w-[90%] border rounded-xl p-4">
         <label htmlFor="username">Enter Username</label>
         <input
-          className="w-full border rounded-xl p-2 mb-5 mt-1"
+          className="w-full border rounded-xl p-2 mb-4 mt-1"
           type="text"
           name="username"
           id="username"
@@ -48,7 +48,7 @@ const SignIn = () => {
         />
         <label htmlFor="password">Enter Password</label>
         <input
-          className="w-full border rounded-xl p-2 mb-5 mt-1"
+          className="w-full border rounded-xl p-2 mb-4 mt-1"
           type="text"
           name="password"
           id="password"
