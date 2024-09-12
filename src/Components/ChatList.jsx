@@ -58,22 +58,18 @@ const ChatList = ({setIsCreateGroup}) => {
         dispatch(getUnreadMessage())
     }, [dispatch, currentUser?._id]);
 
-    useEffect(() => {
-        // Listen for new incoming messages
-        
+    
         socket.on('receiveMessage', (newMessage) => {
             console.log('New message received:', newMessage);
-            if (newMessage.receiver === currentUser._id) {
+            if (newMessage.receiver === currentUser._id || newMessage.room) {
                 // Re-fetch unread messages when a new message arrives
                 dispatch(getUnreadMessage());
             }
         });
 
-        return () => {
-            // Clean up the listener when the component unmounts
-            socket.off('receiveMessage');
-        };
-    }, [currentUser?._id,dispatch]);
+     
+
+
 
 
     const getUserUnreadMessages = (userId) => {

@@ -5,6 +5,7 @@ import { getUnreadMessage, markMessagesAsRead, ReceiveOneToOne } from '../featur
 import SendMessage from './SendMessage';
 import moment from 'moment';
 import { GetUser } from '../features/auth/authSlice';
+import image from '../assets/image.png'
 
 import socket from '../utils/socket';
 
@@ -101,7 +102,10 @@ const Chats = () => {
                         </div>
                     ))
                 ) : (
-                    <div className='text-3xl w-full h-full text-white font-bold flex justify-center items-center'><p>No messages yet...</p></div>
+                    <div className='text-3xl w-full h-full text-white font-bold flex justify-center items-center'>
+                        <img src={image} alt="" />
+                        {/* <p>No messages yet...</p> */}
+                        </div>
                 )}
             </div>
             <div className='h-[15vh] bg-white fixed md:left-[20vw] md:w-[80vw] w-full flex justify-center items-center bottom-0'>            <SendMessage socket={socket} receiverId={id} setMessages={setMessages}/> </div>

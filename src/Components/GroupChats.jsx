@@ -6,6 +6,7 @@ import { getCurrentChatRoom } from '../features/chatRoom/chatRoomSlice';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import socket from '../utils/socket';
+import image from '../assets/image.png'
 
 const GroupChats = () => {
   const params = useParams();
@@ -109,7 +110,10 @@ const GroupChats = () => {
             </div>
           ))
         ) : (
-          <p>No messages yet.</p>
+          <div className='text-3xl w-full h-full text-white font-bold flex justify-center items-center'>
+                        <img src={image} alt="" />
+                        {/* <p>No messages yet...</p> */}
+                        </div>
         )}
       </div>
       {/* SendMessage remains unchanged */}
