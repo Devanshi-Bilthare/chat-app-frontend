@@ -107,7 +107,7 @@ const ChatList = ({setIsCreateGroup}) => {
                     isChatListOpen ? 'translate-x-0' : '-translate-x-full'
                 } md:translate-x-0`}>
             <div className={`w-full py-4 px-5  border-b-2 flex items-center justify-between`}>
-            <h1 className='md:text-black text-white'> {currentUser?.username}</h1>
+            <h1 className='md:text-black text-slate-100'> {currentUser?.username}</h1>
           
                 <div className={`cursor-pointer p-2 ${isDropdownOpen ? "bg-gray-300" : ""}  rounded-full`} onClick={toggleDropdown}><HiDotsVertical /></div>
 
