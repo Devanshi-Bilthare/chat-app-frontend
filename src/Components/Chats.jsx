@@ -20,13 +20,16 @@ const Chats = () => {
     const receivedUser = useSelector(state => state.auth?.receivedUser); 
     // Fetch previous messages when component mounts
     useEffect(() => {
+        const fetchData = async () => {
+            await dispatch(markMessagesAsRead({ senderId: id, chatType: 'one' }));
+            await dispatch(getUnreadMessage());
+            setTimeout(scrollToBottom, 100);
+        };
+    
         dispatch(ReceiveOneToOne(id)); 
-        dispatch(GetUser(id))
-        dispatch(markMessagesAsRead({ senderId: id,chatType:'one'}));
-        dispatch(getUnreadMessage())
-        setTimeout(scrollToBottom, 100);
+        dispatch(GetUser(id));
+        fetchData();
     }, [id, dispatch]);
-
     const scrollToBottom = () => {
         messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
