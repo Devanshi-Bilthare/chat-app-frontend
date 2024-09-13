@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Login } from "../features/auth/authSlice";
+import Image from '../assets/signup.png'
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,8 @@ const SignIn = () => {
 
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full h-screen flex md:flex-row flex-col justify-center items-center">
+      <img className='h-[30vh] md:h-auto' src={Image} alt="" />
       <form onSubmit={submitHandler} className="md:w-[30%] w-[90%] border rounded-xl p-4">
         <label htmlFor="username">Enter Username</label>
         <input
