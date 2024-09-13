@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getUnreadMessage, markMessagesAsRead, ReceiveOneToOne } from '../features/messages/messageSlice';
@@ -14,7 +14,7 @@ const Chats = () => {
     const id = params.id; // Receiver ID
     const dispatch = useDispatch();
     const [messages, setMessages] = useState([]); // Local state for messages
-
+    const messageEndRef = useRef(null);
     const allMessages = useSelector(state => state.message?.ReceivedMessage); // Fetched messages from backend
     const currentUser = useSelector(state => state.auth?.auth); // Current logged-in user
     const receivedUser = useSelector(state => state.auth?.receivedUser); 
@@ -24,11 +24,17 @@ const Chats = () => {
         dispatch(GetUser(id))
         dispatch(markMessagesAsRead({ senderId: id,chatType:'one'}));
         dispatch(getUnreadMessage())
+        setTimeout(scrollToBottom, 100);
     }, [id, dispatch]);
+
+    const scrollToBottom = () => {
+        messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     // Update local messages state when Redux messages change
     useEffect(() => {
         setMessages(allMessages || []);
+        setTimeout(scrollToBottom, 100);
     }, [allMessages]);
 
     useEffect(() => {
@@ -43,6 +49,7 @@ const Chats = () => {
         socket.on('receiveMessage', (newMessage) => {
             if (newMessage.sender === id || newMessage.receiver === id) {
                 setMessages((prevMessages) => [...prevMessages, newMessage]);
+                scrollToBottom()
     
                 if (newMessage.receiver === currentUser._id) {
                     dispatch(markMessagesAsRead({ senderId: newMessage.sender ,chatType:'one'}));
@@ -107,6 +114,7 @@ const Chats = () => {
                         {/* <p>No messages yet...</p> */}
                         </div>
                 )}
+                 <div ref={messageEndRef} />
             </div>
             <div className='h-[15vh] bg-white fixed md:left-[20vw] md:w-[80vw] w-full flex justify-center items-center bottom-0'>            <SendMessage socket={socket} receiverId={id} setMessages={setMessages}/> </div>
         </div>

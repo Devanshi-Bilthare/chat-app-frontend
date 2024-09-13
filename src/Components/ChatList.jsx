@@ -94,7 +94,7 @@ const ChatList = ({setIsCreateGroup}) => {
     return (
         <div className='relative'>
               <button
-                className='md:hidden bg-blue-500 text-white p-2 rounded-full fixed top-4 left-4 z-50'
+                className='md:hidden bg-blue-500 text-white p-2 rounded-full fixed top-2 left-4 z-50'
                 onClick={() => setIsChatListOpen(!isChatListOpen)}
             >
                 <HiMenuAlt1 size={24} />
