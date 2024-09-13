@@ -38,7 +38,7 @@ const CreateGroup = ({setIsCreateGroup}) => {
     return (
         <div className='absolute w-screen h-screen bg-black/30 backdrop-blur-sm flex justify-center items-center'>
            
-            <form className='w-[50vw] h-[70vh] bg-white rounded-xl p-6 flex flex-col' onSubmit={handleSubmit}>
+            <form className='md:w-[50vw] w-[90vw] h-[70vh] bg-white rounded-xl p-6 flex flex-col' onSubmit={handleSubmit}>
             <IoArrowBackSharp onClick={() => setIsCreateGroup(false)} className='cursor-pointer'/>
                 <h2 className='text-lg font-bold mb-4'>Create Chat Room</h2>
                 
