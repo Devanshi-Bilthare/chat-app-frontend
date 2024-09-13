@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Chats from '../Components/Chats'
 import CreateGroup from '../Components/CreateGroup'
 import socket from '../utils/socket'
-import Image from '../assets/image1.png'
+import Image from '../assets/image3.png'
 
 const Home = () => {
   const [isCreateGroup,setIsCreateGroup] = useState(false)
