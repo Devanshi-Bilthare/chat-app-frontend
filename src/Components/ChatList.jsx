@@ -86,8 +86,8 @@ const ChatList = ({setIsCreateGroup}) => {
 
     const getGroupUnreadMessages = (groupId) => {
         return unReadmessages?.filter(message =>
-            !message.read &&
-            message.chatRoom === groupId // Group messages should have a chatRoom value
+            message.chatRoom === groupId && // Ensure it's a group message
+            !message?.readBy?.includes(currentUser?._id) // Check if the current user has not read the message
         );
     };
 

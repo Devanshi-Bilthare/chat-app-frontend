@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SendOneToOne } from '../features/messages/messageSlice'; // Assuming your redux action can handle groups too
+import { markMessagesAsRead, SendOneToOne } from '../features/messages/messageSlice'; // Assuming your redux action can handle groups too
 import { AiOutlineFile } from 'react-icons/ai';
 import { v4 as uuidv4 } from 'uuid';
 import { IoMdSend } from "react-icons/io";
 import { FiPaperclip } from 'react-icons/fi';
 
-const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
+const SendMessage = ({ socket, receiverId, roomId, setMessages, scrollToBottom  }) => {
     const [message, setMessage] = useState('');
     const [file, setFile] = useState(null);
     const dispatch = useDispatch();
@@ -52,9 +52,19 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
     
                 setMessage('');
                 setFile(null);
+                scrollToBottom();
+                dispatch(markMessagesAsRead({ senderId: newMessage.room ,chatType:'group'}));
+
             } catch (error) {
                 console.error("Error sending message:", error);
             }
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevent adding a new line
+            handleSendMessage(); // Call send message function
         }
     };
     
@@ -65,6 +75,7 @@ const SendMessage = ({ socket, receiverId, roomId, setMessages }) => {
                 <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={handleKeyDown}  
                     placeholder="Type a message..."
                     className="w-full px-2 border-none outline-none border-gray-300 rounded-md resize-none"
                 ></textarea>

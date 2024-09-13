@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import SendMessage from './SendMessage'
 import { useDispatch, useSelector } from 'react-redux';
-import { markMessagesAsRead, ReceiveGroupMessages } from '../features/messages/messageSlice';
+import { getUnreadMessage, markMessagesAsRead, ReceiveGroupMessages } from '../features/messages/messageSlice';
 import { getCurrentChatRoom } from '../features/chatRoom/chatRoomSlice';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -23,10 +23,15 @@ const GroupChats = () => {
 };
   // Fetch previous messages when component mounts
   useEffect(() => {
+    const fetchData = async() => {
+      await dispatch(markMessagesAsRead({ senderId: id,chatType:'group'}));
+      await dispatch(getUnreadMessage())
+    setTimeout(scrollToBottom, 100);
+    }
     dispatch(ReceiveGroupMessages(id)); 
     dispatch(getCurrentChatRoom(id));
-    dispatch(markMessagesAsRead({ senderId: id,chatType:'group'}));
-    setTimeout(scrollToBottom, 100);
+    fetchData()
+    
   }, [id, dispatch]);
 
   // Update local messages state when Redux messages change
@@ -127,7 +132,7 @@ const GroupChats = () => {
       </div>
       {/* SendMessage remains unchanged */}
       <div className='h-[15vh] bg-white fixed md:left-[20vw] md:w-[80vw] w-full flex justify-center items-center bottom-0'>   
-      <SendMessage socket={socket} roomId={id} setMessages={setMessages}/> 
+      <SendMessage socket={socket} roomId={id} setMessages={setMessages} scrollToBottom={scrollToBottom}/> 
       </div>
     </div>
   );
