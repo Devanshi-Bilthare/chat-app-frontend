@@ -99,7 +99,7 @@ const ChatList = ({setIsCreateGroup}) => {
             >
                 <HiMenuAlt1 size={24} />
             </button>
-              <div className={`fixed top-0 left-0 h-screen overflow-x-scroll custom-scroll w-[80%] md:w-[20%] bg-slate-100 border-r-2 z-40 transform transition-transform ease-in-out duration-300 ${
+              <div className={`fixed top-0 left-0 h-screen overflow-x-scroll custom-scroll w-[80%] md:w-[20%] bg-slate-100 border-r-2 z-40 transform transition-transform ease-in-out duration-300 pb-20 ${
                     isChatListOpen ? 'translate-x-0' : '-translate-x-full'
                 } md:translate-x-0`}>
             <div className={`w-full py-4 px-5  border-b-2 flex items-center justify-between`}>
