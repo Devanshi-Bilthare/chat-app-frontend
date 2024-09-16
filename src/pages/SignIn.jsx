@@ -51,7 +51,7 @@ const SignIn = () => {
         <label htmlFor="password">Enter Password</label>
         <input
           className="w-full border rounded-xl p-2 mb-4 mt-1"
-          type="text"
+          type="password"
           name="password"
           id="password"
           placeholder="******"
